@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2024 a las 01:37:52
+-- Tiempo de generación: 17-09-2024 a las 01:47:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -70,6 +70,17 @@ CREATE TABLE `generos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `generos_libros`
+--
+
+CREATE TABLE `generos_libros` (
+  `id_libro` int(11) NOT NULL,
+  `id_genero` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `libros`
 --
 
@@ -77,8 +88,7 @@ CREATE TABLE `libros` (
   `id_libro` int(11) NOT NULL,
   `libro_titulo` varchar(50) DEFAULT NULL,
   `id_autor` int(11) NOT NULL,
-  `id_editorial` int(11) NOT NULL,
-  `id_genero` int(11) NOT NULL
+  `id_editorial` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -126,14 +136,20 @@ ALTER TABLE `generos`
   ADD UNIQUE KEY `nombre_genero` (`nombre_genero`);
 
 --
+-- Indices de la tabla `generos_libros`
+--
+ALTER TABLE `generos_libros`
+  ADD PRIMARY KEY (`id_libro`,`id_genero`),
+  ADD KEY `id_genero` (`id_genero`);
+
+--
 -- Indices de la tabla `libros`
 --
 ALTER TABLE `libros`
   ADD PRIMARY KEY (`id_libro`),
   ADD UNIQUE KEY `libro_id` (`id_libro`),
   ADD KEY `id_autor` (`id_autor`),
-  ADD KEY `id_editorial` (`id_editorial`),
-  ADD KEY `id_genero` (`id_genero`);
+  ADD KEY `id_editorial` (`id_editorial`);
 
 --
 -- Indices de la tabla `prestamos`
@@ -188,12 +204,18 @@ ALTER TABLE `prestamos`
 --
 
 --
+-- Filtros para la tabla `generos_libros`
+--
+ALTER TABLE `generos_libros`
+  ADD CONSTRAINT `generos_libros_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `generos_libros_ibfk_2` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id_genero`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `libros`
 --
 ALTER TABLE `libros`
   ADD CONSTRAINT `libros_ibfk_1` FOREIGN KEY (`id_editorial`) REFERENCES `editoriales` (`id_editorial`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `libros_ibfk_2` FOREIGN KEY (`id_autor`) REFERENCES `autores` (`id_autor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `libros_ibfk_3` FOREIGN KEY (`id_genero`) REFERENCES `generos` (`id_genero`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `libros_ibfk_2` FOREIGN KEY (`id_autor`) REFERENCES `autores` (`id_autor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `prestamos`
