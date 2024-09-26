@@ -24,6 +24,11 @@
     Un ejemplo de ellas, es que si se intenta borrar la editorial y esta está vinculada a un libro, se restringira. 
     En cambio, en el caso de los autores, se borraran ambos en cascada.
 
+    (Nueva version)
+    Se acortaron la cantidad de tablas.
+    Tablas de autores y libros.
+    Un autor no puede eliminarse si ya tiene un libro.
+
 # Diagrama
   ![Diagrama](<db.png>
 )
