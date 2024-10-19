@@ -1,0 +1,36 @@
+<?php include 'templates/layout/header.phtml'; ?>
+
+<div class="container mt-5">
+  <h2>Lista de libros
+    <?php if(!empty($info_autor)): ?>
+      <span class="badge text-bg-secondary"> <?=$info_autor->nombre_autor ?> </span>
+      <?php endif;?>
+    </h2>
+    
+
+  <?php if (!empty($lista_libros)): ?>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($lista_libros as $i => $libro): ?>
+          <tr>
+            <td><?= $i + 1; ?></td>
+            <td>  <strong><?=$libro->libro_titulo; ?></strong> </a></td>
+             
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php else: ?>
+    <p>No hay libros disponibles.</p>
+  <?php endif; ?>
+
+</div>
+
+<?php include 'templates/layout/footer.phtml'; ?>

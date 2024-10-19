@@ -7,28 +7,50 @@
     Geronimo Oliveto
 
     e-mail: gerooliveto@gmail.com
-
-    Ivan Batalla
-
-    e-mail: ibatalla132@gmail.com
-
    
 
+## Descripción
+Este proyecto es una web dinámica para la gestión de una biblioteca, 
+desarrollada como parte del Trabajo Práctico Especial (TPE) para la materia de web II. 
+El sitio permite gestionar libros y autores, tanto en su acceso público como en su área administrativa,
+siguiendo el patrón de diseño **MVC** (Modelo-Vista-Controlador). 
+Además, cuenta con la funcionalidad **CRUD** (Crear, Leer, Actualizar y Eliminar) para los autores.
 
-    Este modelo de datos es utilizado para gestionar una biblioteca. Entre sus principales tablas encontramos:
-    Una tabla que almacena informacion sobre los autores de los libros, una para las editoriales, una para los mismos libros y, por ultimo,
-    una para sus generos. Todas ellas con identificadores unicos, sus atributos y relaciones.
-    También este modelo posee una tabla de clientes y una de prestamos.
-    En cuanto a la tabla generos_libros, esta se encarga de relacionar a un libro con mas de un genero si se quisiese.
-    Por el momento, se usaron diversas restricciones en cada tabla para observar sus variaciones. 
-    Un ejemplo de ellas, es que si se intenta borrar la editorial y esta está vinculada a un libro, se restringira. 
-    En cambio, en el caso de los autores, se borraran ambos en cascada.
+### Funcionalidades principales:
+1. **Acceso público**:
+   - Listado de autores con su nombre y nacionalidad.
+   - Puede verse a que libros esta asociado su autor si se quisiese. (no en profundidad)
+ 
+  
+2. **Acceso administrativo**:
+   - Login para usuarios administradores.
+   - Administración de autores (crear, editar, eliminar, subir foto).
 
-    (Nueva version)
-    Se acortaron la cantidad de tablas.
-    Tablas de autores y libros.
-    Un autor no puede eliminarse si ya tiene un libro.
+## Tecnologías utilizadas
+- **PHP**: Backend y lógica del servidor.
+- **MySQL**: Base de datos para almacenar la información de los autores y libros.
+- **Bootstrap**: Estilos responsivos y diseño de la interfaz.
+- **Smarty**: Sistema de plantillas para generar el HTML dinámicamente.
+- **MVC (Modelo-Vista-Controlador)**: Estructura para organizar el código.
+
+## Instalación y despliegue
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/usuario/web.tpe.base.git
+
+2. Configura el archivo config.php con los datos de conexión a tu base de datos MySQL.
+
+3. Carga el archivo SQL proporcionado (libreria.sql) en tu servidor MySQL para crear la base de datos con los datos iniciales:
+     mysql -u usuario -p contraseña biblioteca < database/biblioteca.sql
+
+4. Ejecuta el servidor local (por ejemplo, utilizando XAMPP o MAMP) y accede a la web desde tu navegador:
+  http://localhost/web.tpe.base/
+
+## Usuarios de prueba
+  Usuario administrador: webadmin
+  Contraseña: admin
 
 # Diagrama
   ![Diagrama](<db.png>
 )
+

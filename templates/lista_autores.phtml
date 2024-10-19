@@ -1,0 +1,49 @@
+<?php include 'templates/layout/header.phtml'; ?>
+
+<div class="container mt-5">
+  <h2>Lista de Autores</h2>
+
+  <?php if (!empty($lista_autores)): ?>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Nacionalidad</th>
+          <?php if ($this->usuario): ?>
+            <th scope="col">Opciones</th>
+          <?php endif; ?>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($lista_autores as $i => $autor): ?>
+          <tr>
+            <td><?= $i + 1; ?></td>
+            <td>
+              <?php if($autor->archivo_foto):?>
+                <img src="<?= BASE_URL . $autor->archivo_foto?>" class="img-thumbnail" width="100" height="auto" alt="foto autor">
+              <?php endif;?>
+              <a href="<?= BASE_URL . 'libros/' . $autor->id_autor ?>"> <strong><?= htmlspecialchars($autor->nombre_autor); ?></strong> </a>
+            </td>
+            <td><?= $autor->nacionalidad_autor; ?></td>
+            <?php if ($this->usuario): ?>
+              <td>
+                <a class="btn btn-primary btn-sm" href="<?= BASE_URL ?>editar-autor/<?= $autor->id_autor ?>" role="button">Editar</a>
+                <a class="btn btn-danger btn-sm" href="<?= BASE_URL ?>borrar-autor/<?= $autor->id_autor ?>" role="button">Borrar</a>
+              </td>
+            <?php endif; ?>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+
+  <?php else: ?>
+    <p>No hay autores disponibles.</p>
+  <?php endif; ?>
+  <?php if ($this->usuario): ?>
+    <a class="btn btn-success" href="<?= BASE_URL ?>agregar-autor" role="button">Agregar</a>
+  <?php endif; ?>
+</div>
+
+<?php include 'templates/layout/footer.phtml'; ?>
