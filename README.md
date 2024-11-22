@@ -46,6 +46,7 @@ Además, cuenta con la funcionalidad **CRUD** (Crear, Leer, Actualizar y Elimina
 4. Ejecuta el servidor local (por ejemplo, utilizando XAMPP o MAMP) y accede a la web desde tu navegador:
   http://localhost/web.tpe.base/
 
+5. Para las imagenes, crear carpeta images.
 ## Usuarios de prueba
   Usuario administrador: webadmin
   Contraseña: admin
